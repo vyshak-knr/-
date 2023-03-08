@@ -2,123 +2,80 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <title>My Awesome Page</title>
     <style>
       /* add your styles here */
       body {
+        margin: 0;
+        padding: 0;
         background-color: #000;
-      }
-      h1 {
-        text-align: center;
-        margin-top: 50px;
-        margin-bottom: 20px;
-        color: #fff;
-        font-family: Arial, sans-serif;
-      }
-      .box {
-        width: 80%;
-        margin: 0 auto;
-        background-color: #333;
-        border: 1px solid #ccc;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      }
-      .copy-btn {
-        display: inline-block;
-        margin: 20px auto 0;
-        padding: 10px 20px;
-        background-color: #00ffff;
-        color: #000;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        box-shadow: 0 0 10px rgba(0,0,0,0.4);
-        position: relative;
         overflow: hidden;
       }
-      .copy-btn:hover {
-        background-color: #00e5ff;
-      }
-      .copy-btn:before {
-        content: "";
+      canvas {
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background-color: #00ffff;
-        opacity: 0.5;
-        transform: rotate(45deg);
-        animation: particle 2s linear infinite;
-      }
-      @keyframes particle {
-        0% {
-          transform: rotate(45deg) translate(-50%, -50%);
-          opacity: 0.5;
-        }
-        50% {
-          transform: rotate(45deg) translate(0%, 0%);
-          opacity: 1;
-        }
-        100% {
-          transform: rotate(45deg) translate(50%, -50%);
-          opacity: 0.5;
-        }
+        top: 0;
+        left: 0;
+        z-index: -1;
       }
     </style>
   </head>
   <body>
-     <div id="particles-js"></div>
+    <canvas id="canvas"></canvas>
     <h1>My Awesome Page</h1>
     <div class="box">
       <p>This is some awesome text that looks great on mobile devices!</p>
       <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
     </div>
-  <script>
-  particlesJS("particles-js", {
-    particles: {
-      number: {
-        value: 80,
-        density: {
-          enable: true,
-          value_area: 800,
-        },
-      },
-      color: {
-        value: "#ffffff",
-      },
-      shape: {
-        type: "circle",
-        stroke: {
-          width: 0,
-          color: "#000000",
-        },
-        polygon: {
-          nb_sides: 5,
-        },
-        image: {
-          src: "img/github.svg",
-          width: 100,
-          height: 100,
-        },
-      },
-      opacity: {
-        value: 0.5,
-        random: false,
-        anim: {
-          enable: false,
-          speed: 1,
-          opacity_min: 0.1,
-          sync: false,
-        },
-      },
-      size: {
-        value: 3,
-        random: true
-
     <script>
+      // particle effect code
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var particles = [];
+      var particleCount = 200;
+
+      function createParticles() {
+        for (var i = 0; i < particleCount; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 4 + 1,
+            vx: Math.floor(Math.random() * 10) - 5,
+            vy: Math.floor(Math.random() * 10) - 5,
+          });
+        }
+      }
+
+      function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+        ctx.beginPath();
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          ctx.moveTo(p.x, p.y);
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, true);
+        }
+        ctx.fill();
+        updateParticles();
+      }
+
+      function updateParticles() {
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < -50) p.x = canvas.width + 50;
+          if (p.y < -50) p.y = canvas.height + 50;
+          if (p.x > canvas.width + 50) p.x = -50;
+          if (p.y > canvas.height + 50) p.y = -50;
+        }
+      }
+
+      createParticles();
+      setInterval(drawParticles, 30);
+
+      // copy to clipboard code
       function copyToClipboard() {
         var text = document.querySelector('.box p').innerText;
         var tempInput = document.createElement('input');
