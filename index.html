@@ -1,76 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>My Fire Page</title>
-	<style>
-		body {
-			background-color: black;
-			background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-			background-attachment: fixed;
-		}
-		#fire-heading {
-			font-family: 'Candal', sans-serif;
-			font-size: 60px;
-			color: orange;
-			text-shadow: 0 0 10px red, 0 0 20px yellow, 0 0 30px orange, 0 0 40px red, 0 0 50px yellow, 0 0 60px orange;
-			text-align: center;
-			margin-top: 50px;
-			margin-bottom: 50px;
-		}
-		#text-box {
-			background-color: darkgray;
-			border: 2px solid #1aff00;
-			border-radius: 5px;
-			padding: 20px;
-			margin: auto;
-			max-width: 80%;
-			box-shadow: 0 0 20px #1aff00;
-		}
-		#text {
-			color: white;
-			font-family: Arial, sans-serif;
-			font-size: 24px;
-			line-height: 1.5;
-			text-align: justify;
-		}
-		#copy-btn {
-			background-color: #00ffff;
-			color: black;
-			font-family: Arial, sans-serif;
-			font-size: 24px;
-			border: none;
-			border-radius: 20px;
-			padding: 10px 20px;
-			margin-top: 20px;
-			box-shadow: 0 8px #008b8b;
-			transition: all 0.3s ease;
-		}
-		#copy-btn:hover {
-			background-color: #008b8b;
-			box-shadow: 0 4px #008b8b;
-			transform: translateY(4px);
-		}
-		#copy-btn:active {
-			box-shadow: none;
-			transform: translateY(8px);
-		}
-		@media only screen and (max-width: 600px) {
-			#fire-heading {
-				font-size: 36px;
-			}
-			#text-box {
-				max-width: 95%;
-			}
-			#copy-btn {
-				font-size: 20px;
-				padding: 8px 16px;
-			}
-		}
-	</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Premium HTML Page</title>
+  <style>
+    /* Fire particle effect */
+    body {
+      background: black url("https://www.transparenttextures.com/patterns/firewatch.png") fixed;
+      background-size: cover;
+      color: white;
+    }
+    /* Fire-like heading */
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000;
+    }
+    /* Box with text */
+    .box {
+      background-color: #262626;
+      border: 2px solid #ffcc00;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #ffcc00;
+      margin: 50px auto;
+      max-width: 80%;
+      padding: 20px;
+      text-align: center;
+    }
+    /* Copy button */
+    .copy-btn {
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 0 10px #ffcc00;
+      color: black;
+      cursor: pointer;
+      display: block;
+      font-size: 1.5rem;
+      margin: 20px auto;
+      padding: 10px 20px;
+      text-align: center;
+      text-shadow: none;
+      text-transform: uppercase;
+      transition: all 0.2s ease-in-out;
+    }
+    .copy-btn:hover {
+      background-color: #000000;
+      box-shadow: 0 0 10px #000000;
+      color: white;
+    }
+    /* Mobile view */
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .box {
+        max-width: 100%;
+        margin: 20px auto;
+        padding: 10px;
+      }
+      .copy-btn {
+        font-size: 1.2rem;
+        padding: 5px 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-	<h1 id="fire-heading">Welcome to my fiery page!</h1>
-	<div id="text-box">
-		<p id="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id justo odio. Aenean vehicula semper augue, at tempus purus malesuada sed. Integer a nunc eros. Sed sed elit eget quam tincidunt sagittis vel vel velit. Nulla nec aliquam tellus. Aliquam erat volutpat. In malesuada tellus lectus, ac pellentesque purus hendrerit eget. Fusce ullamcorper libero massa, a bibendum est euismod in. Etiam id semper purus. Nunc consectetur malesuada dui, nec dapibus velit pharetra eu. Sed at est diam. </p>
-		<button id="copy-btn" onclick="copyText()">Copy text</button>
+  <h1>My Premium HTML Page</h1>
+  <div class="box">
+    <p>This is the text inside the box.</p>
+  </div>
+  <button class="copy-btn">Copy Text</button>
+</body>
+</html>
