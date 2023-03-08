@@ -1,91 +1,76 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Awesome Page</title>
-    <style>
-      /* add your styles here */
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #000;
-        overflow: hidden;
-      }
-      canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-      }
-    </style>
-  </head>
-  <body>
-    <canvas id="canvas"></canvas>
-    <h1>My Awesome Page</h1>
-    <div class="box">
-      <p>This is some awesome text that looks great on mobile devices!</p>
-      <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
-    </div>
-    <script>
-      // particle effect code
-      var canvas = document.getElementById("canvas");
-      var ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      var particles = [];
-      var particleCount = 200;
-
-      function createParticles() {
-        for (var i = 0; i < particleCount; i++) {
-          particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 4 + 1,
-            vx: Math.floor(Math.random() * 10) - 5,
-            vy: Math.floor(Math.random() * 10) - 5,
-          });
-        }
-      }
-
-      function drawParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-        ctx.beginPath();
-        for (var i = 0; i < particles.length; i++) {
-          var p = particles[i];
-          ctx.moveTo(p.x, p.y);
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, true);
-        }
-        ctx.fill();
-        updateParticles();
-      }
-
-      function updateParticles() {
-        for (var i = 0; i < particles.length; i++) {
-          var p = particles[i];
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.x < -50) p.x = canvas.width + 50;
-          if (p.y < -50) p.y = canvas.height + 50;
-          if (p.x > canvas.width + 50) p.x = -50;
-          if (p.y > canvas.height + 50) p.y = -50;
-        }
-      }
-
-      createParticles();
-      setInterval(drawParticles, 30);
-
-      // copy to clipboard code
-      function copyToClipboard() {
-        var text = document.querySelector('.box p').innerText;
-        var tempInput = document.createElement('input');
-        tempInput.setAttribute('value', text);
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-        alert('Text copied to clipboard!');
-      }
-    </script>
-  </body>
-</html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My Fire Page</title>
+	<style>
+		body {
+			background-color: black;
+			background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+			background-attachment: fixed;
+		}
+		#fire-heading {
+			font-family: 'Candal', sans-serif;
+			font-size: 60px;
+			color: orange;
+			text-shadow: 0 0 10px red, 0 0 20px yellow, 0 0 30px orange, 0 0 40px red, 0 0 50px yellow, 0 0 60px orange;
+			text-align: center;
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+		#text-box {
+			background-color: darkgray;
+			border: 2px solid #1aff00;
+			border-radius: 5px;
+			padding: 20px;
+			margin: auto;
+			max-width: 80%;
+			box-shadow: 0 0 20px #1aff00;
+		}
+		#text {
+			color: white;
+			font-family: Arial, sans-serif;
+			font-size: 24px;
+			line-height: 1.5;
+			text-align: justify;
+		}
+		#copy-btn {
+			background-color: #00ffff;
+			color: black;
+			font-family: Arial, sans-serif;
+			font-size: 24px;
+			border: none;
+			border-radius: 20px;
+			padding: 10px 20px;
+			margin-top: 20px;
+			box-shadow: 0 8px #008b8b;
+			transition: all 0.3s ease;
+		}
+		#copy-btn:hover {
+			background-color: #008b8b;
+			box-shadow: 0 4px #008b8b;
+			transform: translateY(4px);
+		}
+		#copy-btn:active {
+			box-shadow: none;
+			transform: translateY(8px);
+		}
+		@media only screen and (max-width: 600px) {
+			#fire-heading {
+				font-size: 36px;
+			}
+			#text-box {
+				max-width: 95%;
+			}
+			#copy-btn {
+				font-size: 20px;
+				padding: 8px 16px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<h1 id="fire-heading">Welcome to my fiery page!</h1>
+	<div id="text-box">
+		<p id="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id justo odio. Aenean vehicula semper augue, at tempus purus malesuada sed. Integer a nunc eros. Sed sed elit eget quam tincidunt sagittis vel vel velit. Nulla nec aliquam tellus. Aliquam erat volutpat. In malesuada tellus lectus, ac pellentesque purus hendrerit eget. Fusce ullamcorper libero massa, a bibendum est euismod in. Etiam id semper purus. Nunc consectetur malesuada dui, nec dapibus velit pharetra eu. Sed at est diam. </p>
+		<button id="copy-btn" onclick="copyText()">Copy text</button>
