@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Awesome Page</title>
+    <style>
+      /* add your styles here */
+      body {
+        background-color: #000;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        color: #fff;
+        font-family: Arial, sans-serif;
+      }
+      .box {
+        width: 80%;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      }
+      .copy-btn {
+        display: inline-block;
+        margin: 20px auto 0;
+        padding: 10px 20px;
+        background-color: #00ffff;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0,0,0,0.4);
+        position: relative;
+        overflow: hidden;
+      }
+      .copy-btn:hover {
+        background-color: #00e5ff;
+      }
+      .copy-btn:before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-color: #00ffff;
+        opacity: 0.5;
+        transform: rotate(45deg);
+        animation: particle 2s linear infinite;
+      }
+      @keyframes particle {
+        0% {
+          transform: rotate(45deg) translate(-50%, -50%);
+          opacity: 0.5;
+        }
+        50% {
+          transform: rotate(45deg) translate(0%, 0%);
+          opacity: 1;
+        }
+        100% {
+          transform: rotate(45deg) translate(50%, -50%);
+          opacity: 0.5;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Awesome Page</h1>
+    <div class="box">
+      <p>This is some awesome text that looks great on mobile devices!</p>
+      <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
+    </div>
+    <script>
+      function copyToClipboard() {
+        var text = document.querySelector('.box p').innerText;
+        var tempInput = document.createElement('input');
+        tempInput.setAttribute('value', text);
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        alert('Text copied to clipboard!');
+      }
+    </script>
+  </body>
+</html>
