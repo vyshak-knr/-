@@ -71,8 +71,23 @@
 <body>
   <h1>My Premium HTML Page</h1>
   <div class="box">
-    <p>This is the text inside the box.</p>
+    <p id="text-to-copy">This is the text inside the box.</p>
   </div>
-  <button class="copy-btn">Copy Text</button>
+  <button class="copy-btn" id="copy-btn">Copy Text</button>
+
+  <script>
+    const copyBtn = document.getElementById('copy-btn');
+    const textToCopy = document.getElementById('text-to-copy');
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(textToCopy.innerText)
+      .then(() => {
+        alert('Text copied to clipboard!');
+      })
+      .catch((err) => {
+        console.error('Failed to copy text: ', err);
+      });
+    });
+  </script>
 </body>
 </html>
